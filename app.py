@@ -64,26 +64,26 @@ def processRequest(req):
         result = urlopen(yql_url).read()
         data = json.loads(result)
         res = makeWebhookResult(data)
-	elif req.get("result").get("action") == "getTipoTapp":
-	    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+    elif req.get("result").get("action") == "getTipoTapp":
+	urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
         manager=PoolManager(num_pools=3,cert_reqs='CERT_REQUIRED',ca_certs=certifi.where())
-		tipo_req=makeWebhookParameters(req)
-		if tipo_req is None:
+	tipo_req=makeWebhookParameters(req)
+	if tipo_req is None:
 		   return {}  
         base_url="https://app.tipotapp.com/docs/quickstart/"
-		page=manager.request('GET',base_url)
-		soup = BeautifulSoup(page.data, 'html.parser')
+	page=manager.request('GET',base_url)
+	soup = BeautifulSoup(page.data, 'html.parser')
         for sibling in soup.find(id=tipo_req).next_siblings:
-			if sibling.name is None :
-				continue
-			elif sibling.name == 'p' :
-				out = sibling.getText()
-				out_str.append(out)
-			else :   
-				break
+	    if sibling.name is None :
+		continue
+	    elif sibling.name == 'p' :
+		out = sibling.getText()
+		out_str.append(out)
+	    else :   
+		break
 		data="\n".join(out_str)		
 		res = makeWebhookResultForTipoTapp(data)		
-	else
+    else
         return {}	
 	
     return res
