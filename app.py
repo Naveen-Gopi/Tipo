@@ -15,7 +15,7 @@
 # limitations under the License.
 
 from __future__ import print_function
-from future.standard_library import install_aliases
+from future.standard_library import install_aliasesa
 install_aliases()
 
 from urllib.parse import urlparse, urlencode
@@ -64,26 +64,26 @@ def processRequest(req):
         result = urlopen(yql_url).read()
         data = json.loads(result)
         res = makeWebhookResult(data)
-    elif req.get("result").get("action") == "getTipoTapp":
-         urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-         manager=PoolManager(num_pools=3,cert_reqs='CERT_REQUIRED',ca_certs=certifi.where())
-       	 tipo_req=makeWebhookParameters(req)
-	 if tipo_req is None:
-	    return {}  
-         base_url="https://app.tipotapp.com/docs/quickstart/"
-	 page=manager.request('GET',base_url)
-         soup = BeautifulSoup(page.data, 'html.parser')
-         for sibling in soup.find(id=tipo_req).next_siblings:
-	     if sibling.name is None :
-		continue
-	     elif sibling.name == 'p' :
-	        out = sibling.getText()
-		out_str.append(out)
-	     else :   
-		break
-	 data="\n".join(out_str)		
-	 res = makeWebhookResultForTipoTapp(data)		
-    else
+	elif req.get("result").get("action") == "getTipoTapp":
+	    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+        manager=PoolManager(num_pools=3,cert_reqs='CERT_REQUIRED',ca_certs=certifi.where())
+		tipo_req=makeWebhookParameters(req)
+		if tipo_req is None:
+		   return {}  
+        base_url="https://app.tipotapp.com/docs/quickstart/"
+		page=manager.request('GET',base_url)
+		soup = BeautifulSoup(page.data, 'html.parser')
+        for sibling in soup.find(id=tipo_req).next_siblings:
+			if sibling.name is None :
+				continue
+			elif sibling.name == 'p' :
+				out = sibling.getText()
+				out_str.append(out)
+			else :   
+				break
+		data="\n".join(out_str)		
+		res = makeWebhookResultForTipoTapp(data)		
+	else
         return {}	
 	
     return res
@@ -103,7 +103,7 @@ def makeWebhookParameters()
 	result = req.get("result")
     parameters = result.get("parameters")
     tipo_id = parameters.get("any")
-    if tipo_id is None:
+	if tipo_id is None:
         return None
 
     return tipo_id
