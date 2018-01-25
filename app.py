@@ -23,7 +23,6 @@ install_aliases()
 from urllib.parse import urlparse, urlencode
 from urllib.request import urlopen, Request
 from urllib.error import HTTPError
-import certifi  # added by naveen
 from urllib3 import PoolManager  # added by naveen
 from bs4 import BeautifulSoup  # added by naveen
 
@@ -72,8 +71,7 @@ def processRequest(req):
         res = makeWebhookResult(data)
     elif req.get('result').get('action') == 'getTipoTapp':
         urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-        manager = PoolManager(num_pools=3, cert_reqs='CERT_REQUIRED',
-                              ca_certs=certifi.where())
+        manager = PoolManager(num_pools=3)
         tipo_req = makeWebhookParameters(req)
         if tipo_req is None:
             return {}
