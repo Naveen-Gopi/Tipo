@@ -81,8 +81,8 @@ def processRequest(req):
             res = makeWebhookResultForTipoTapp(data)
         print('After the result function')
     else:
-	print('Else Loop ')
-	speechText = 'Introduction Not available'
+        print('Else Loop ')
+        speechText = 'Introduction Not available'
         return {'speech': speechText}
 
     return res
@@ -93,11 +93,11 @@ def makeWebhookResultForTipoTapp(data):
     displayText = data
     print('Response:')
     print(speechText)
-    return {'speech': speechText, 
-            'displayText': displayText,
+    return {'speech': speechText, 'displayText': displayText,
             'source': 'apiai-weather-webhook-sample'}  # "data": data,
-                                                       # "contextOut": [],
 
+
+                                                       # "contextOut": [],
 
 def makeWebhookParameters():
     result = req.get('result')
@@ -115,6 +115,8 @@ if __name__ == '__main__':
     print('Starting app on port %d' % port)
 
     app.run(debug=False, port=port, host='0.0.0.0')
+
+			
 
 
 			
