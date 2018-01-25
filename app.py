@@ -78,6 +78,7 @@ def processRequest(req):
         base_url = 'https://app.tipotapp.com/docs/quickstart/'
         page = manager.request('GET', base_url)
         soup = BeautifulSoup(page.data, 'html.parser')
+        print('After Parameter function')
         for sibling in soup.find(id=tipo_req).next_siblings:
             if sibling.name is None:
                 continue
@@ -88,6 +89,7 @@ def processRequest(req):
                 break
             data = '\n'.join(out_str)
             res = makeWebhookResultForTipoTapp(data)
+        print('After the result function')
     else:
         return {}
 
@@ -97,7 +99,10 @@ def processRequest(req):
 def makeWebhookResultForTipoTapp(data):
     speechText = data
     displayText = data
-    return {'speech': speechText, 'displayText': displayText,
+    print('Response:')
+    print(speechText)
+    return {'speech': speechText, 
+            'displayText': displayText,
             'source': 'apiai-weather-webhook-sample'}  # "data": data,
                                                        # "contextOut": [],
 
@@ -108,56 +113,8 @@ def makeWebhookParameters():
     tipo_id = parameters.get('any')
     if tipo_id is None:
         return None
-
+    print('Inside the funtion makeWebhookParameters')
     return tipo_id
-
-
-def makeYqlQuery(req):
-    result = req.get('result')
-    parameters = result.get('parameters')
-    city = parameters.get('geo-city')
-    if city is None:
-        return None
-
-    return "select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" \
-        + city + "')"
-
-
-def makeWebhookResult(data):
-    query = data.get('query')
-    if query is None:
-        return {}
-
-    result = query.get('results')
-    if result is None:
-        return {}
-
-    channel = result.get('channel')
-    if channel is None:
-        return {}
-
-    item = channel.get('item')
-    location = channel.get('location')
-    units = channel.get('units')
-    if location is None or item is None or units is None:
-        return {}
-
-    condition = item.get('condition')
-    if condition is None:
-        return {}
-
-    # print(json.dumps(item, indent=4))
-
-    speech = 'Today the weather in ' + location.get('city') + ': ' \
-        + condition.get('text') + ', And the temperature is ' \
-        + condition.get('temp') + ' ' + units.get('temperature')
-
-    print('Response:')
-    print(speech)
-
-    return {'speech': speech, 'displayText': speech,
-            'source': 'apiai-weather-webhook-sample'}  # "data": data,
-                                                       # "contextOut": [],
 
 
 if __name__ == '__main__':
