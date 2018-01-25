@@ -23,7 +23,6 @@ install_aliases()
 from urllib.parse import urlparse, urlencode
 from urllib.request import urlopen, Request
 from urllib.error import HTTPError
-import urllib3  # added by naveen
 import certifi  # added by naveen
 from urllib3 import PoolManager  # added by naveen
 from bs4 import BeautifulSoup  # added by naveen
