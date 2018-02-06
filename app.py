@@ -63,7 +63,6 @@ def webhook():
 
 def processRequest(req):
     if req.get('result').get('action') == 'getTipoTapp':
-        urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
         manager = PoolManager(num_pools=3)
         tipo_req = makeWebhookParameters(req)
         if tipo_req is None:
