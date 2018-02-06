@@ -101,7 +101,7 @@ def makeWebhookResultForTipoTapp(data):
 
                                                        # "contextOut": [],
 
-def makeWebhookParameters():
+def makeWebhookParameters(req):
     result = req.get('result')
     parameters = result.get('parameters')
     tipo_id = parameters.get('any')
