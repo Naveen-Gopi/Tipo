@@ -28,7 +28,10 @@ from bs4 import BeautifulSoup  # added by naveen
 
 import json
 import os
+import sys
+import logging
 
+from flask import Flask, render_template
 from flask import Flask
 from flask import request
 from flask import make_response
@@ -36,9 +39,9 @@ from flask import make_response
 # Flask app should start in global layout
 
 app = Flask(__name__)
-
-
-                                         # naveen
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.ERROR)
+                                     
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
