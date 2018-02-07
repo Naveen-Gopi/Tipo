@@ -46,6 +46,7 @@ def webhook():
     return r
 
 out_str=[]
+data=[]
 def processRequest(req):
     if req.get('result').get('action') == 'getTipoTapp':
         manager = PoolManager(num_pools=3)
