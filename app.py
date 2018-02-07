@@ -1,4 +1,5 @@
-
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 
 from __future__ import print_function
 from future.standard_library import install_aliases
@@ -25,7 +26,7 @@ from flask import make_response
 app = Flask(__name__)
 app.logger.addHandler(logging.StreamHandler(sys.stdout))
 app.logger.setLevel(logging.ERROR)
-                                     
+
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
@@ -55,7 +56,7 @@ def processRequest(req):
         page = manager.request('GET', base_url)
         soup = BeautifulSoup(page.data, 'html.parser')
         print('After Parameter function')
-	out_str = []
+        out_str = []
         for sibling in soup.find(id=tipo_req).next_siblings:
             if sibling.name is None:
                 continue
@@ -102,8 +103,6 @@ if __name__ == '__main__':
     print('Starting app on port %d' % port)
 
     app.run(debug=False, port=port, host='0.0.0.0')
-
-			
 
 
 			
