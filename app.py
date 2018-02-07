@@ -55,7 +55,7 @@ def processRequest(req):
         base_url = 'https://app.tipotapp.com/docs/quickstart/'
         page = manager.request('GET', base_url)
         soup = BeautifulSoup(page.data, 'html.parser')
-        print('After Parameter function')
+        print('After Parameter function',tipo_req)
         for sibling in soup.find(id='introduction').next_siblings:
             if sibling.name is None:
                 continue
