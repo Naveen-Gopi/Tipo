@@ -65,7 +65,7 @@ def processRequest(req):
             else:
                 break
             data = '\n'.join(out_str)
-            res = makeWebhookResultForTipoTapp(data)
+        res = makeWebhookResultForTipoTapp(data)
         print('After the result function')
     else:
         print('Else Loop ')
