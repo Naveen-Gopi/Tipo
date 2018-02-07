@@ -45,7 +45,7 @@ def webhook():
     r.headers['Content-Type'] = 'application/json'
     return r
 
-
+out_str=[]
 def processRequest(req):
     if req.get('result').get('action') == 'getTipoTapp':
         manager = PoolManager(num_pools=3)
@@ -56,7 +56,6 @@ def processRequest(req):
         page = manager.request('GET', base_url)
         soup = BeautifulSoup(page.data, 'html.parser')
         print('After Parameter function')
-        out_str = []
         for sibling in soup.find(id=tipo_req).next_siblings:
             if sibling.name is None:
                 continue
