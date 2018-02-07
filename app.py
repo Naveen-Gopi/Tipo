@@ -9,7 +9,7 @@ from urllib.parse import urlparse, urlencode
 from urllib.request import urlopen, Request
 from urllib.error import HTTPError
 from urllib3 import PoolManager  # added by naveen
-from bs4 import BeautifulSoup  # added by naveen
+from bs4 import BeautifulSoup,next_siblings  # added by naveen
 
 import json
 import os
