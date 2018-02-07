@@ -45,27 +45,41 @@ def webhook():
     r.headers['Content-Type'] = 'application/json'
     return r
 
-out_str=[]
-data=[]
+out_str = []
+data = []
+urls = [
+    'https://app.tipotapp.com/docs/introduction/',
+    'https://app.tipotapp.com/docs/quickstart/',
+    'https://app.tipotapp.com/docs/advanced_concepts/',
+    'https://app.tipotapp.com/docs/developer_documentation/',
+    'https://app.tipotapp.com/docs/client_side_actions/',
+    'https://app.tipotapp.com/docs/server_side_actions/',
+    'https://app.tipotapp.com/docs/expressions_and_filters_syntax/',
+    ]
+
+
 def processRequest(req):
     if req.get('result').get('action') == 'getTipoTapp':
         manager = PoolManager(num_pools=3)
         tipo_req = makeWebhookParameters(req)
         if tipo_req is None:
             return {}
-        base_url = 'https://app.tipotapp.com/docs/quickstart/'
-        page = manager.request('GET', base_url)
-        soup = BeautifulSoup(page.data, 'html.parser')
-        print('After Parameter function',tipo_req)
-        for sibling in soup.find(id=tipo_req).next_siblings:
-            if sibling.name is None:
-                continue
-            elif sibling.name == 'p':
-                out = sibling.getText()
-                out_str.append(out)
+        for url in urls:
+            page = manager.request('GET', url)
+            soup = BeautifulSoup(page.data, 'html.parser')
+            print('After Parameter function', tipo_req)
+            if soup.find(id=tipo_req) is not None:
+                for sibling in soup.find(id=tipo_req).next_siblings:
+                    if sibling.name is None:
+                        continue
+                    elif sibling.name == 'p':
+                        out = sibling.getText()
+                        out_str.append(out)
+                    else:
+                        break
+                    data = '\n'.join(out_str)
             else:
-                break
-            data = '\n'.join(out_str)
+                continue
         res = makeWebhookResultForTipoTapp(data)
     else:
         print('Else Loop ')
@@ -78,7 +92,6 @@ def processRequest(req):
 def makeWebhookResultForTipoTapp(data):
     speechText = data
     displayText = data
-    print(data)
     print('Response:')
     print(speechText)
     return {'speech': speechText, 'displayText': displayText,
