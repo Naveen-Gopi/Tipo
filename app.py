@@ -9,7 +9,7 @@ from urllib.parse import urlparse, urlencode
 from urllib.request import urlopen, Request
 from urllib.error import HTTPError
 from urllib3 import PoolManager  # added by naveen
-from bs4 import BeautifulSoup,next_siblings  # added by naveen
+from bs4 import BeautifulSoup  # added by naveen
 
 import json
 import os
@@ -56,7 +56,7 @@ def processRequest(req):
         page = manager.request('GET', base_url)
         soup = BeautifulSoup(page.data, 'html.parser')
         print('After Parameter function')
-        for sibling in soup.find(id=tipo_req).next_siblings:
+        for sibling in soup.find(id=introduction).next_siblings:
             if sibling.name is None:
                 continue
             elif sibling.name == 'p':
