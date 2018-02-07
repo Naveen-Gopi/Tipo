@@ -56,7 +56,7 @@ def processRequest(req):
         page = manager.request('GET', base_url)
         soup = BeautifulSoup(page.data, 'html.parser')
         print('After Parameter function')
-        for sibling in soup.find(id=introduction).next_siblings:
+        for sibling in soup.find(id='introduction').next_siblings:
             if sibling.name is None:
                 continue
             elif sibling.name == 'p':
