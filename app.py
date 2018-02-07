@@ -72,7 +72,7 @@ def processRequest(req):
                 for sibling in soup.find(id=tipo_req).next_siblings:
                     if sibling.name is None:
                         continue
-                    elif sibling.name == 'p':
+                    elif sibling.name != 'h2':
                         out = sibling.getText()
                         out_str.append(out)
                     else:
