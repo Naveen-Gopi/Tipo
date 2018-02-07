@@ -66,8 +66,8 @@ def processRequest(req):
             else:
                 break
             data = '\n'.join(out_str)
+	print('After the result function',data)
         res = makeWebhookResultForTipoTapp(data)
-        print('After the result function',data)
     else:
         print('Else Loop ')
         speechText = 'Introduction Not available'
