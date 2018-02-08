@@ -35,7 +35,9 @@ def webhook():
     print(json.dumps(req, indent=4))
     res = processRequest(req)
     res = json.dumps(res, indent=4)
+
     # print(res)
+
     r = make_response(res)
     r.headers['Content-Type'] = 'application/json'
     return r
@@ -70,12 +72,14 @@ def processRequest(req):
                     elif sibling.name != 'h2':
                         out = sibling.getText()
                         out_str.append(out)
-		        res = makeWebhookResultForTipoTapp(out_str)
+                        res = makeWebhookResultForTipoTapp(out_str)
                     else:
                         break
-                    #data = '\n'.join(out_str)
             else:
-                continue  
+
+                    # data = '\n'.join(out_str)
+
+                continue
     else:
         print('Else Loop ')
         speechText = 'Introduction Not available'
