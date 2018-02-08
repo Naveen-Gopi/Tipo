@@ -70,12 +70,12 @@ def processRequest(req):
                     elif sibling.name != 'h2':
                         out = sibling.getText()
                         out_str.append(out)
+			res = makeWebhookResultForTipoTapp(out_str)
                     else:
                         break
-                    data = '\n'.join(out_str)
+                    #data = '\n'.join(out_str)
             else:
-                continue
-        res = makeWebhookResultForTipoTapp(data)
+                continue    
     else:
         print('Else Loop ')
         speechText = 'Introduction Not available'
