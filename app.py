@@ -71,14 +71,13 @@ def processRequest(req):
                         continue
                     elif sibling.name != 'h2':
                         out = sibling.getText()
-                        out_str.append(out)
-                        res = makeWebhookResultForTipoTapp(out_str)
+                        out_str.append(out)    
                     else:
                         break
             else:
 
-                    # data = '\n'.join(out_str)
-
+                    data = '\n'.join(out_str)
+                    res = makeWebhookResultForTipoTapp(data)
                 continue
     else:
         print('Else Loop ')
