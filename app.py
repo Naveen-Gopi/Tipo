@@ -72,7 +72,7 @@ def processRequest(req):
                         out_str.append(out)
                     else:
                         break
-                    data = '\n\r'.join(out_str)
+                    data = '\n'.join(out_str)
             else:
                 continue
         res = makeWebhookResultForTipoTapp(data)
