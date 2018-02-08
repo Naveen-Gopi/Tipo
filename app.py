@@ -75,7 +75,7 @@ def processRequest(req):
                     elif sibling.name == 'p':
                         out = sibling.getText()
                         out_str.append(out)
-			res = makeWebhookResultForTipoTapp(out_str)
+		        res = makeWebhookResultForTipoTapp(out_str)
                     else:
                         break
                     #data = '\n'.join(out_str)
