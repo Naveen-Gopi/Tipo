@@ -75,7 +75,7 @@ def processRequest(req):
                         break
                     #data = '\n'.join(out_str)
             else:
-                continue    
+                continue  
     else:
         print('Else Loop ')
         speechText = 'Introduction Not available'
