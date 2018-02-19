@@ -66,7 +66,7 @@ def processRequest(req):
         for url in urls:
             page = manager.request('GET', url)
             soup = BeautifulSoup(page.data, 'html.parser')
-            print('After Parameter function', tipo_req)
+           # print('After Parameter function', tipo_req)
             if soup.find(id=tipo_req) is not None:
                 for sibling in soup.find(id=tipo_req).next_siblings:
                     if sibling.name is None:
@@ -81,7 +81,7 @@ def processRequest(req):
                 continue
         res = makeWebhookResultForTipoTapp(data)
     else:
-        print('Else Loop ')
+       # print('Else Loop ')
         speechText = 'Introduction Not available'
         return {'speech': speechText}
 
@@ -105,7 +105,7 @@ def makeWebhookParameters(req):
     tipo_id = parameters.get('any')
     if tipo_id is None:
         return None
-    print('Inside the funtion makeWebhookParameters')
+   # print('Inside the funtion makeWebhookParameters')
     return tipo_id
 
 
