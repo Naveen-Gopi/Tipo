@@ -102,7 +102,8 @@ def makeWebhookResultForTipoTapp(data):
 def makeWebhookParameters(req):
     result = req.get('result')
     parameters = result.get('parameters')
-    tipo_id = parameters.get('any')
+    #tipo_id = parameters.get('any')  # commented on 19th Feb
+    tipo_id = list(parameters)[0]
     if tipo_id is None:
         return None
    # print('Inside the funtion makeWebhookParameters')
