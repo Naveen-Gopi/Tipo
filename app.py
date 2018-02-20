@@ -104,7 +104,7 @@ def makeWebhookParameters(req):
     parameters = result.get('parameters')
     #tipo_id = parameters.get('any')  # commented on 19th Feb
     #tipo_id = list(parameters)[0]    # as API.AI is including all the entity in the intent we have changing the value based on length
-    for entity_name,entity_value in parameters.items()
+    for entity_name,entity_value in parameters.items():
         if len(entity_value)>0
 	    tipo_id=entity_name
     if tipo_id is None:
