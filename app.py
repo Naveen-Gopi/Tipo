@@ -66,7 +66,9 @@ def processRequest(req):
         for url in urls:
             page = manager.request('GET', url)
             soup = BeautifulSoup(page.data, 'html.parser')
+
            # print('After Parameter function', tipo_req)
+
             if soup.find(id=tipo_req) is not None:
                 for sibling in soup.find(id=tipo_req).next_siblings:
                     if sibling.name is None:
@@ -81,7 +83,9 @@ def processRequest(req):
                 continue
         res = makeWebhookResultForTipoTapp(data)
     else:
+
        # print('Else Loop ')
+
         speechText = 'Introduction Not available'
         return {'speech': speechText}
 
@@ -102,14 +106,18 @@ def makeWebhookResultForTipoTapp(data):
 def makeWebhookParameters(req):
     result = req.get('result')
     parameters = result.get('parameters')
-    #tipo_id = parameters.get('any')  # commented on 19th Feb
-    #tipo_id = list(parameters)[0]    # as API.AI is including all the entity in the intent we have changing the value based on length
-    for entity_name,entity_value in parameters.items():
-        if len(entity_value)>0:
-	    tipo_id=entity_name
+
+    # tipo_id = parameters.get('any')  # commented on 19th Feb
+    # tipo_id = list(parameters)[0]    # as API.AI is including all the entity in the intent we have changing the value based on length
+
+    for (entity_name, entity_value) in parameters.items():
+        if len(entity_value) > 0:
+            tipo_id = entity_name
     if tipo_id is None:
         return None
+
    # print('Inside the funtion makeWebhookParameters')
+
     return tipo_id
 
 
@@ -119,8 +127,5 @@ if __name__ == '__main__':
     print('Starting app on port %d' % port)
 
     app.run(debug=False, port=port, host='0.0.0.0')
-
-
-			
 
 			
