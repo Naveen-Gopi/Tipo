@@ -43,7 +43,8 @@ def webhook():
     r.headers['Content-Type'] = 'application/json'
     return r
 
-out_str = []
+# out_str = []
+
 data = []
 urls = [
     'https://app.tipotapp.com/docs/introduction/',
@@ -58,6 +59,7 @@ urls = [
 
 def processRequest(req):
     if req.get('result').get('action') == 'getTipoTapp':
+        out_str = []
         urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
         manager = PoolManager(num_pools=3)
         tipo_req = makeWebhookParameters(req)
@@ -115,8 +117,9 @@ def makeWebhookParameters(req):
             tipo_id = entity_name
             print('Inside the funtion makeWebhookParameters', tipo_id)
             break
-    #if tipo_id is None:
-        #return None
+
+    # if tipo_id is None:
+        # return None
 
    # print('Inside the funtion makeWebhookParameters')
 
