@@ -114,6 +114,7 @@ def makeWebhookParameters(req):
         if len(entity_value) > 0:
             tipo_id = entity_name
             print('Inside the funtion makeWebhookParameters', tipo_id)
+            break
     if tipo_id is None:
         return None
 
