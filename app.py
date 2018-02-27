@@ -78,6 +78,15 @@ def processRequest(req):
                     elif sibling.name != 'h2':
                         out = sibling.getText()
                         out_str.append(out)
+                        if sibling.img is not None:
+                            url=sibling.img['src']
+                            name=sibling.img['alt']
+                            hyperlink_format = '<a href="{link}">{text}</a>'
+                            link_text = hyperlink_format.format
+                            out_1=link_text(link=url, text=name)
+                            out_str.append(out_1)
+                         else:
+                             continue
                     else:
                         break
                     data = '\n'.join(out_str)
