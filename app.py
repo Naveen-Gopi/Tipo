@@ -85,8 +85,8 @@ def processRequest(req):
                             link_text = hyperlink_format.format
                             out_1=link_text(link=url, text=name)
                             out_str.append(out_1)
-                         else:
-                             continue
+                        else:
+                            continue
                     else:
                         break
                     data = '\n'.join(out_str)
