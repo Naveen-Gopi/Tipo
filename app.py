@@ -57,6 +57,7 @@ urls = [
 
 
 def processRequest(req):
+    data = []
     if req.get('result').get('action') == 'getTipoTapp':
         out_str = []
         urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -73,7 +74,6 @@ def processRequest(req):
             if soup.find(id=tipo_req) is not None:
                 print('Inside the find function', tipo_req)
                 for sibling in soup.find(id=tipo_req).next_siblings:
-                    data = None
                     if sibling.name is None:
                         continue
                     elif sibling.name != 'h2':
