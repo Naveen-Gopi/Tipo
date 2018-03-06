@@ -44,7 +44,7 @@ def webhook():
     return r
 
 # out_str = []
-# data = []
+data = []
 urls = [
     'https://app.tipotapp.com/docs/introduction/',
     'https://app.tipotapp.com/docs/quickstart/',
