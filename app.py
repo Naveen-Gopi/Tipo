@@ -59,7 +59,6 @@ urls = [
 def processRequest(req):
     if req.get('result').get('action') == 'getTipoTapp':
         out_str = []
-        data = []
         urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
         manager = PoolManager(num_pools=3)
         tipo_req = makeWebhookParameters(req)
@@ -69,9 +68,10 @@ def processRequest(req):
             page = manager.request('GET', url)
             soup = BeautifulSoup(page.data, 'html.parser')
 
-           # print('After Parameter function', tipo_req)
+            print('After Parameter function', tipo_req)
 
             if soup.find(id=tipo_req) is not None:
+                data = []
                 for sibling in soup.find(id=tipo_req).next_siblings:
                     if sibling.name is None:
                         continue
