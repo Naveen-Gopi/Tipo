@@ -57,7 +57,7 @@ urls = [
 
 
 def processRequest(req):
-    data = []
+    data = None
     if req.get('result').get('action') == 'getTipoTapp':
         out_str = []
         urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
