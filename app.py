@@ -44,7 +44,7 @@ def webhook():
     return r
 
 # out_str = []
-data = []
+# data = []
 urls = [
     'https://app.tipotapp.com/docs/introduction/',
     'https://app.tipotapp.com/docs/quickstart/',
@@ -57,6 +57,7 @@ urls = [
 
 
 def processRequest(req):
+    data=[]
     if req.get('result').get('action') == 'getTipoTapp':
         out_str = []
         urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -92,6 +93,7 @@ def processRequest(req):
                     data = '\n'.join(out_str)
             else:
                 continue
+        print('before printing data', data)
         res = makeWebhookResultForTipoTapp(data)
     else:
 
