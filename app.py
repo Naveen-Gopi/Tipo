@@ -91,9 +91,10 @@ def processRequest(req):
                     else:
                         break
                     data = '\n'.join(out_str)
+                 print('before printing data', data)                   
             else:
                 continue
-        print('before printing data', data)
+            print('after printing data', data)
         res = makeWebhookResultForTipoTapp(data)
     else:
 
