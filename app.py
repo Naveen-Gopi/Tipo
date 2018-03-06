@@ -91,7 +91,7 @@ def processRequest(req):
                     else:
                         break
                     data = '\n'.join(out_str)
-                 print('before printing data', data)                   
+                 print('before printing data', data)
             else:
                 continue
             print('after printing data', data)
