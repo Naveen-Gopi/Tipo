@@ -59,7 +59,7 @@ urls = [
 def processRequest(req):
     if req.get('result').get('action') == 'getTipoTapp':
         out_str = []
-	    data = []
+        data = []
         urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
         manager = PoolManager(num_pools=3)
         tipo_req = makeWebhookParameters(req)
