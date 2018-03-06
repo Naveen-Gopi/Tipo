@@ -71,8 +71,9 @@ def processRequest(req):
             print('After Parameter function', tipo_req)
 
             if soup.find(id=tipo_req) is not None:
-                data = []
+                print('Inside the find function', tipo_req)
                 for sibling in soup.find(id=tipo_req).next_siblings:
+                    data = None
                     if sibling.name is None:
                         continue
                     elif sibling.name != 'h2':
